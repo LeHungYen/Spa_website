@@ -11,7 +11,6 @@ function App() {
       <div className="App">
         <Routes>
           {
-              // ádad
             publicRoutes.map((route, index) => {
               let Layout = DefaultLayout;
               if (route.layout) {
