@@ -1,16 +1,18 @@
 import { MdSearch  } from "react-icons/md";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import FlagLogoIcons from "../../../components/flag-logo-icons";
+import {useState} from "react";
 export default function SiteTopBar(props) {
     const {phone} = props;
+    const [showSearch, toggleSearch] = useState(false);
     return (
         <div className="site-top-bar-container" >
             <div className="site-top-bar">
                 <img className="logo" src={require('../../../assests/logo.png')} alt="logo"/>
                 <div className="top-bar-right-box">
                     <div className="search-box">
-                        <input className="search-area" type="text" placeholder="Tìm kiếm"/>
-                        <MdSearch className="right-icon" />
+                        <MdSearch className="right-icon" onClick={()=> toggleSearch(!showSearch)}/>
+                        <input className={"search-area popup " + (showSearch ? "" : "hidden")} type="text" placeholder="Tìm kiếm"/>
                     </div>
                     <FlagLogoIcons />
                     <div className="contract-info-detail">

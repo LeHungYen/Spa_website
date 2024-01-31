@@ -7,7 +7,7 @@ export default function NavigationMenuBar(props) {
         <div className={"navigation-menu-bar-container top-navigation-menu " + additionalClassName}>
             <div className="navigation-menu-bar">
                 {navigations.map((item, index) =>
-                    <NavItem {...item} />
+                    <NavItem {...item} key={index} />
                 )}
             </div>
         </div>
@@ -28,23 +28,13 @@ NavigationMenuBar.defaultProps = {
 function getServiceItem(){
     return [
         {
-            groupName: "group1",
             items:[
                 new NavigationItem("service1", "/service-detail/1"),
                 new NavigationItem("service1", "/service-detail/1"),
                 new NavigationItem("service1", "/service-detail/1"),
                 new NavigationItem("service1", "/service-detail/1"),
             ],
-        },
-        {
-            groupName: "group2",
-            items:[
-                new NavigationItem("service1", "/service-detail/1"),
-                new NavigationItem("service1", "/service-detail/1"),
-                new NavigationItem("service1", "/service-detail/1"),
-                new NavigationItem("service1", "/service-detail/1"),
-            ],
-        },
+        }
     ]
 }
 

@@ -1,21 +1,34 @@
+import React from "react"
 import NavItem from "../../../components/nav-item";
 import {NavigationItem} from "../../../model/navigation-item";
 import {HiOutlineBars3} from "react-icons/hi2";
 import {useEffect, useRef, useState} from "react";
-import style from '../index.module.scss'
 import {MdSearch} from "react-icons/md";
+import FlagLogoIcons from "../../../components/flag-logo-icons";
 
 
 export default function NavigationBarDrawerMode(props) {
-    const {navigations, pos} = props;
-    const additionalClassName = pos > 57 ? "fixed" : ""
-    const [isOpen, toggle] = useState(false);
+    const {navigations} = props;
+    const [isOpen, setIsOpen] = useState(false);
     const insideDrawer = useRef(false);
+    const isFirstOpen = useRef(true);
+
+    useEffect(() => {
+        const resize = function(e) {
+            if (window.innerWidth < 800 && !isFirstOpen.current) {
+                isFirstOpen.current = true;
+            }
+        }
+        window.addEventListener("resize", resize);
+        return ()=> {
+            window.removeEventListener("resize", resize);
+        }
+    }, [])
 
     useEffect(() => {
         const closeDrawer = function(e) {
             if(!insideDrawer.current) {
-                toggle(false);
+                setIsOpen(false);
                 document.getElementById("root").classList.remove("disable");
             }
         }
@@ -34,30 +47,35 @@ export default function NavigationBarDrawerMode(props) {
     }
 
     const openDrawer = function(e) {
-        document.getElementById("root").classList.toggle("disable");
         e.stopPropagation();
-        toggle(!isOpen);
+        document.getElementById("root").classList.toggle("disable");
+        isFirstOpen.current = false;
+        setIsOpen(!isOpen);
     }
 
-
-
     return (
-        <div className={"navigation-drawer-container top-navigation-menu " + additionalClassName}>
-            <img className={"logo " + (pos > 57 ? "": "hidden")} src={require('../../../assests/logo.png')} alt="logo"/>
-            <HiOutlineBars3 className="navigation-drawer-icon" onClick={openDrawer}/>
-            <div className={"navigation-drawer " + (isOpen ? "visible" : "hidden")}
-                 onMouseEnter={()=> insideDrawer.current = true}
-                 onMouseLeave={()=> insideDrawer.current = false}
-            >
-                {navigations.map((item, index) =>
-                    <NavItem {...item} />
-                )}
-                <div className="search-box">
-                    <input className="search-area" type="text" placeholder="Tìm kiếm"/>
-                    <MdSearch className="right-icon" />
+        <React.Fragment>
+            <div className={"navigation-drawer-container top-navigation-menu fixed"}>
+                <img className="logo" src={require('../../../assests/logo.png')} alt="logo"/>
+                <HiOutlineBars3 className="navigation-drawer-icon" onClick={openDrawer}/>
+                <div className={"navigation-drawer " + (isOpen ? "slide-in visible " : "slide-out ") + (isFirstOpen.current ? "hidden" : "")}
+                     onMouseEnter={()=> insideDrawer.current = true}
+                     onMouseLeave={()=> insideDrawer.current = false}
+                >
+                    {navigations.map((item, index) =>
+                        <NavItem {...item} key={index} />
+                    )}
+                    <div className="search-box">
+                        <input className="search-area" type="text" placeholder="Tìm kiếm"/>
+                        <MdSearch className="right-icon" />
+                    </div>
+                    <div className="additional-options">
+                        <FlagLogoIcons />
+                    </div>
                 </div>
             </div>
-        </div>
+            <div style={{height: 57}}></div>
+        </React.Fragment>
     )
 }
 

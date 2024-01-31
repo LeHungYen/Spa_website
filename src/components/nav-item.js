@@ -8,11 +8,11 @@ export default function NavItem(props) {
         }
         return (
             <div className={"sub-navigation-menu-item " + (isShowPopup ? "visible" : "hidden")}>
-                {items.map(item =>
-                    <div className="navigation-group-item">
+                {items.map((item, index) =>
+                    <div className="navigation-group-item" key={index}>
                         <span className="group-header">{item.groupName}</span>
-                        {item.items.map(subItem =>
-                            <NavItem {...subItem}/>
+                        {item.items.map((subItem, subIndex) =>
+                            <NavItem {...subItem} key={subIndex} />
                         )}
                     </div>
                 )}

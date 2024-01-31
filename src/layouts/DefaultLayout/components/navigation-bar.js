@@ -26,7 +26,7 @@ export default function NavigationBar() {
 
     return(
         <div className="navigation-bar-container">
-            <SiteTopBar phone="0923123123"/>
+            <SiteTopBar phone="0923123123 - 0892323244 - 0982132121"/>
             <NavigationMenuBar pos = {pos}/>
             <NavigationBarDrawerMode pos = {pos}/>
         </div>
