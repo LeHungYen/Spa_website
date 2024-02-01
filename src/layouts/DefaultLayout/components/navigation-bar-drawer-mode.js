@@ -5,25 +5,30 @@ import {HiOutlineBars3} from "react-icons/hi2";
 import {useEffect, useRef, useState} from "react";
 import {MdSearch} from "react-icons/md";
 import FlagLogoIcons from "../../../components/flag-logo-icons";
+import {getDict} from "../../../services/dict";
 
 
 export default function NavigationBarDrawerMode(props) {
-    const {navigations} = props;
+    let {navigations} = props;
+    if(!navigations) {
+        navigations = defaultNavigations();
+    }
     const [isOpen, setIsOpen] = useState(false);
     const insideDrawer = useRef(false);
-    const isFirstOpen = useRef(true);
+    const [isFirstOpen, setFirstOpen] = useState(true);
+
 
     useEffect(() => {
         const resize = function(e) {
-            if (window.innerWidth < 800 && !isFirstOpen.current) {
-                isFirstOpen.current = true;
+            if (window.innerWidth < 800 && !isFirstOpen) {
+                setFirstOpen(true);
             }
         }
         window.addEventListener("resize", resize);
         return ()=> {
             window.removeEventListener("resize", resize);
         }
-    }, [])
+    }, [isFirstOpen])
 
     useEffect(() => {
         const closeDrawer = function(e) {
@@ -49,7 +54,7 @@ export default function NavigationBarDrawerMode(props) {
     const openDrawer = function(e) {
         e.stopPropagation();
         document.getElementById("root").classList.toggle("disable");
-        isFirstOpen.current = false;
+        setFirstOpen(false);
         setIsOpen(!isOpen);
     }
 
@@ -58,7 +63,7 @@ export default function NavigationBarDrawerMode(props) {
             <div className={"navigation-drawer-container top-navigation-menu fixed"}>
                 <img className="logo" src={require('../../../assests/logo.png')} alt="logo"/>
                 <HiOutlineBars3 className="navigation-drawer-icon" onClick={openDrawer}/>
-                <div className={"navigation-drawer " + (isOpen ? "slide-in visible " : "slide-out ") + (isFirstOpen.current ? "hidden" : "")}
+                <div className={"navigation-drawer " + (isOpen ? "slide-in " : "slide-out ") + (isFirstOpen ? "hidden" : "")}
                      onMouseEnter={()=> insideDrawer.current = true}
                      onMouseLeave={()=> insideDrawer.current = false}
                 >
@@ -79,12 +84,15 @@ export default function NavigationBarDrawerMode(props) {
     )
 }
 
-NavigationBarDrawerMode.defaultProps = {
-    navigations: [
-        new NavigationItem("Home", "/"),
-        new NavigationItem("Services", "/service"),
-        new NavigationItem("Products", "/product"),
-        new NavigationItem("About us", "/about"),
-        new NavigationItem("Contact us", "/contact")
-    ],
+const defaultNavigations = function () {
+    return [
+        new NavigationItem(getDict("nav_home"), "/"),
+        new NavigationItem(getDict("nav_introduce"), "/"),
+        new NavigationItem(getDict("nav_doctor"), "/doctor"),
+        new NavigationItem(getDict("nav_service_1"), "/service-group/1"),
+        new NavigationItem(getDict("nav_service_2"), "/service-group/1"),
+        new NavigationItem(getDict("nav_product"), "/product"),
+        new NavigationItem(getDict("nav_news"), "/news"),
+        new NavigationItem(getDict("nav_contact"), "/contact")
+    ]
 }

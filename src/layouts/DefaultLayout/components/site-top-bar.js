@@ -2,6 +2,7 @@ import { MdSearch  } from "react-icons/md";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import FlagLogoIcons from "../../../components/flag-logo-icons";
 import {useState} from "react";
+import {getDict} from "../../../services/dict";
 export default function SiteTopBar(props) {
     const {phone} = props;
     const [showSearch, toggleSearch] = useState(false);
@@ -18,7 +19,7 @@ export default function SiteTopBar(props) {
                     <div className="contract-info-detail">
                         <div>
                             <BsFillTelephoneFill className="left-icon" />
-                            <span>Liên hệ để được tư vấn trực tiếp</span>
+                            <span>{getDict("contact_msg")}</span>
                         </div>
                         <span>{phone}</span>
                     </div>

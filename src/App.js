@@ -6,7 +6,11 @@ import './App.css';
 import { publicRoutes } from './routes/index'
 import { DefaultLayout } from './layouts/DefaultLayout';
 import {useState} from "react";
+import {useSelector} from "react-redux";
+import store from "./store/store";
 function App() {
+  const lang = useSelector(state => state.lang);
+  console.log(store.getState());
   return (
     <BrowserRouter>
       <div className="App">
