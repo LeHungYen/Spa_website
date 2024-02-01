@@ -1,6 +1,6 @@
 import style from './index.module.scss'
 import "./index.css"
-import NavigationBar from "./components/navigation-bar";
+import NavigationBar from "./headder/navigation-bar";
 
 export function DefaultLayout({ children }) {
 
