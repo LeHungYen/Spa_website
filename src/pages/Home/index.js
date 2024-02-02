@@ -7,7 +7,7 @@ export function Home() {
 
     return <div className={style.container}>
         <div className={style.banner}>
-
+            <CarouselBanner />
         </div>
 
         <div className={style.introduce}>
