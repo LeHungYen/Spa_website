@@ -26,7 +26,6 @@ export default function FlagLogoIcons(props) {
     const handleLanguageChange = (lang) => {
         changeLanguage(dispatch ,lang);
     };
-    console.log("images " + imageSources.length)
     return(
         <div className="lang-chooser">
             {flags.map((flag, index) =>{
@@ -41,7 +40,7 @@ export default function FlagLogoIcons(props) {
                         }
                     />
                 } else {
-                    return <></>
+                    return <div key={index} style={{display:"none"}}></div>
                 }
             })}
         </div>

@@ -3,6 +3,7 @@ import style from './index.module.scss'
 import { Introduce } from './Introduce'
 import { Product } from './Product'
 import { Service } from './Service'
+import CarouselBanner from "../../components/carousel-banner";
 export function Home() {
 
     return <div className={style.container}>
