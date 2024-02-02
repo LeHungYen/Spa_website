@@ -58,34 +58,32 @@ export function Service() {
     const [scrollPosition, setScrollPosition] = useState(0)
 
     useEffect(() => {
-        const handleScroll = () => {
-            const position = window.scrollY;
+        const handleScroll = (e) => {
+            const position = e.currentTarget.scrollTop;;
             setScrollPosition(position)
         }
 
-
-
-        window.addEventListener('scroll', handleScroll)
-
+        document.getElementById("root").addEventListener('scroll', handleScroll)
         return () => {
-            window.removeEventListener('scroll', handleScroll)
+            document.getElementById("root").removeEventListener('scroll', handleScroll)
         }
     }, []);
 
-    console.log(scrollPosition)
 
     useEffect(() => {
-        if (scrollPosition < 700) {
+
+        if (scrollPosition < 800) {
             containerRef.current.style.backgroundPosition = 'center 0px'
         }
-        if (scrollPosition > 700) {
+        if (scrollPosition > 800) {
             containerRef.current.style.backgroundPosition = 'center 300px'
         }
-        if (scrollPosition < 900) {
+        if (scrollPosition < 1000) {
             containerRef.current.style.backgroundSize = '70%'
         }
-        if (scrollPosition > 900) {
+        if (scrollPosition > 1000) {
             containerRef.current.style.backgroundSize = '100%'
+            console.log(scrollPosition)
         }
 
     }, [scrollPosition])
