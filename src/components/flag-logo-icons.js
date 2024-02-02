@@ -1,42 +1,69 @@
 import {changeLanguage} from "../store/action";
-import {connect, useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
+import {getResourceImage} from "../services/import-resource";
+import {useEffect, useState} from "react";
 
 
-function FlagLogoIcons() {
+export default function FlagLogoIcons(props) {
+    let {flags} = props;
     const dispatch = useDispatch();
+    const [imageSources, setImageSources] = useState([]);
+
+    useEffect(() => {
+        const loadImages = async function () {
+            if(flags) {
+                const resources = await Promise.all(
+                    flags.map(flag => getResourceImage(flag.path))
+                )
+                setImageSources(resources);
+            }
+        }
+        loadImages().then(()=>{
+            //do nothing
+        });
+    }, []);
+
     const handleLanguageChange = (lang) => {
         changeLanguage(dispatch ,lang);
     };
+    console.log("images " + imageSources.length)
     return(
         <div className="lang-chooser">
-            <img
-                className="flag-icon"
-                src={require("../assests/flag_en.jpg") }
-                alt="EN /"
-                onClick={
-                    ()=>handleLanguageChange("en")
+            {flags.map((flag, index) =>{
+                if(imageSources.length > 0) {
+                    return <img
+                        key={index}
+                        className={flag.className}
+                        src={ imageSources[index] }
+                        alt={flag.value}
+                        onClick={
+                            ()=>handleLanguageChange(flag.value)
+                        }
+                    />
+                } else {
+                    return <></>
                 }
-            />
-            <img
-                className="flag-icon"
-                src={require("../assests/flag_ja.jpg") }
-                alt="JP /"
-                onClick={
-                    ()=>handleLanguageChange("jp")
-                }
-            />
-            <img
-                className="flag-icon"
-                src={require("../assests/flag_vn.jpg") }
-                alt="VI"
-                onClick={
-                    ()=>handleLanguageChange("vi")
-                }
-            />
+            })}
         </div>
     )
 }
 
-
-
-export default FlagLogoIcons;
+FlagLogoIcons.defaultProps = {
+    flags: [
+        {
+            className: "flag-icon",
+            path: "flag_en.jpg",
+            value: "en"
+        },
+        {
+            className: "flag-icon",
+            path: "flag_ja.jpg",
+            value: "jp"
+        },
+        {
+            className: "flag-icon",
+            path: "flag_vn.jpg",
+            value: "vi"
+        },
+    ]
+}

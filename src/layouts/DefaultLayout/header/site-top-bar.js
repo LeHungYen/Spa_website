@@ -13,7 +13,7 @@ export default function SiteTopBar(props) {
                 <div className="top-bar-right-box">
                     <div className="search-box">
                         <MdSearch className="right-icon" onClick={()=> toggleSearch(!showSearch)}/>
-                        <input className={"search-area popup " + (showSearch ? "" : "hidden")} type="text" placeholder="Tìm kiếm"/>
+                        <input className={"search-area popup " + (showSearch ? "" : "hidden")} type="text" placeholder={getDict("search")}/>
                     </div>
                     <FlagLogoIcons />
                     <div className="contract-info-detail">
