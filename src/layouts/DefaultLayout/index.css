@@ -308,6 +308,10 @@
     }
 }
 
+.navigation-off-set-width {
+    display: none;
+}
+
 .slide-out {
     animation-name: slide-out;
     animation-duration: 1s;
@@ -320,6 +324,9 @@
 @media (max-width: 800px) {
     .navigation-drawer-container {
         display: flex;
+    }
+    .navigation-off-set-width {
+        display: block;
     }
 }
 /*navigation-drawer end*/

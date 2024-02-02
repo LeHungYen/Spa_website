@@ -71,7 +71,7 @@ export default function NavigationBarDrawerMode(props) {
                         <NavItem {...item} key={index} />
                     )}
                     <div className="search-box">
-                        <input className="search-area" type="text" placeholder="Tìm kiếm"/>
+                        <input className="search-area" type="text" placeholder={getDict("search")}/>
                         <MdSearch className="right-icon" />
                     </div>
                     <div className="additional-options">
@@ -79,7 +79,7 @@ export default function NavigationBarDrawerMode(props) {
                     </div>
                 </div>
             </div>
-            <div style={{height: 57}}></div>
+            <div className="navigation-off-set-width" style={{height: 57}}></div>
         </React.Fragment>
     )
 }
