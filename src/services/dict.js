@@ -55,5 +55,10 @@ const dictLibrary = {
         en: "Hotline (Free consultation)",
         vi: "Hotline tư vấn miễn phí",
         jp: "ホットライン（無料診断）"
+    },
+    search: {
+        en: "Search anything",
+        vi: "Tìm kiếm",
+        jp: ""
     }
 }
