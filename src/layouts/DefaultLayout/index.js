@@ -1,6 +1,6 @@
 import style from './index.module.scss'
 import "./index.css"
-import NavigationBar from "./headder/navigation-bar";
+import NavigationBar from "./header/navigation-bar";
 
 
 import { Footer } from './Footer'
@@ -12,7 +12,7 @@ export function DefaultLayout({ children }) {
                 <NavigationBar/>
             </div>
 
-            <div className={style.body} style={{height: 5000}}>
+            <div className={style.body}>
                 {children}
             </div>
 
