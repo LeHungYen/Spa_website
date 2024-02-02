@@ -131,7 +131,7 @@ export function Footer() {
                                 <button><PiInstagramLogo className={style.icon} /></button>
                                 <button><FaFacebookF className={style.icon} /></button>
                             </div>
-                        </div>
+                        </div> 
                     </div>
                 </div>
 
