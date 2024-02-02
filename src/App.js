@@ -5,7 +5,9 @@ import './App.css';
 
 import { publicRoutes } from './routes/index'
 import { DefaultLayout } from './layouts/DefaultLayout';
+import {useSelector} from "react-redux";
 function App() {
+  const lang = useSelector(state => state.lang);
   return (
     <BrowserRouter>
       <div className="App">
