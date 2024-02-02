@@ -1,0 +1,129 @@
+.container {
+    width: 100%;
+
+    p,
+    span {
+        color: #555555;
+    }
+}
+
+.container * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.container {
+    padding: 50px 0px;
+    background-image: url('https://rohtoaohalclinic.com.vn/modules/main//images/bg2.png');
+    background-position: center center;
+    background-size: 70%;
+    transition: 2s ease;
+    // animation: gradient 5s linear infinite;
+
+    .title {
+        width: 66%;
+        margin: 0px auto;
+        position: relative;
+
+        p {
+            font-size: 35px;
+            font-weight: 700;
+            text-align: center;
+            padding-bottom: 20px;
+
+        }
+
+    }
+
+    .title::before {
+        content: '';
+        width: 60px;
+        border-bottom: 1px solid #555555;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .items {
+        width: 66%;
+        margin: 30px auto 0px auto;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1%;
+
+        .item {
+            width: calc(33.3333% - 0.6666%);
+            margin-bottom: 1%;
+        }
+    }
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 0%;
+    }
+
+    100% {
+        background-position: 100% 100%;
+    }
+}
+
+
+@media screen and (min-width:1230px) {
+
+    .container .title,
+    .container .items {
+        min-width: 1230px;
+    }
+}
+
+@media screen and (max-width:1230px) {
+
+    .container .title,
+    .container .items {
+        width: 96%;
+    }
+}
+
+@media screen and (max-width:990px) {
+    .container {
+        .title {
+            width: 96%;
+
+            p {
+                font-size: 25px;
+            }
+        }
+
+        .items {
+            width: 96%;
+            display: flex;
+            justify-content: space-between;
+            gap: 2%;
+
+            .item {
+                width: 49%;
+                margin-bottom: 2%;
+            }
+        }
+    }
+}
+
+@media screen and (max-width:770px) {
+    .container {
+        .items {
+            width: 96%;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+
+            .item {
+                width: 100%;
+            }
+        }
+    }
+}

@@ -1,9 +1,37 @@
 import style from './index.module.scss'
-import CarouselBanner from "../../components/carousel-banner";
 
+import { Introduce } from './Introduce'
+import { Product } from './Product'
+import { Service } from './Service'
 export function Home() {
 
     return <div className={style.container}>
-        <CarouselBanner />
+        <div className={style.banner}>
+            <CarouselBanner />
+        </div>
+
+        <div className={style.introduce}>
+            <Introduce />
+        </div>
+
+        <div className={style.doctor}>
+
+        </div>
+
+        <div className={style.service}>
+            <Service />
+        </div>
+
+        <div className={style.product}>
+            <Product />
+        </div>
+
+        <div className={style.videoAndImg}>
+
+        </div>
+
+        <div className={style.customerReview}>
+
+        </div>
     </div>
 }
