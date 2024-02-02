@@ -2,6 +2,8 @@ import style from './index.module.scss'
 import "./index.css"
 import NavigationBar from "./headder/navigation-bar";
 
+
+import { Footer } from './Footer'
 export function DefaultLayout({ children }) {
 
     return (
@@ -15,7 +17,7 @@ export function DefaultLayout({ children }) {
             </div>
 
             <div className={style.footer}>
-                    
+                <Footer />
             </div>
         </div>
     )

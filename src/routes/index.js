@@ -2,10 +2,9 @@ import { routes } from "../config/routes"
 
 import { Home } from "../pages/Home"
 import { NullLayout } from "../layouts/NullLayout"
-import {DefaultLayout} from "../layouts/DefaultLayout";
 
 const publicRoutes = [
-    { path: routes.home, component: Home},
+    { path: routes.home, component: Home, layout: NullLayout },
 ]
 
 const privateRoutes = [
