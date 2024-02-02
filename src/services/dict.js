@@ -3,14 +3,14 @@ import store from "../store/store";
 
 export function getDict(key) {
     const state = store.getState();
-    const rs = dictLibrary[key][state.lang]
-    if(rs) {
-        return rs;
+    try {
+        return dictLibrary[key][state.lang]
+    } catch (ex) {
+        return "DICT_ERROR";
     }
-    return "DICT_ERROR";
 }
 
-const dictLibrary = {
+const dictLibrary= {
     nav_home: {
         en: "Home",
         vi: "Trang chủ",
