@@ -26,7 +26,9 @@ CarouselBanner.defaultProps = {
         interval: 3000,
         autoPlay: true,
         showThumbs: false,
-        showStatus: false
+        showStatus: false,
+        showArrows: false,
+        emulateTouch: true,
     },
     carousels: [
         {
