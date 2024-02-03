@@ -8,7 +8,7 @@ export function Home() {
 
     return <div className={style.container}>
         <div className={style.banner}>
-            {/* <CarouselBanner /> */}
+            <CarouselBanner />
         </div>
 
         <div className={style.introduce}>
